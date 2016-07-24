@@ -1,4 +1,4 @@
-FROM floulab/ubuntu-ansible
+FROM ubuntu:latest
 MAINTAINER Ioannis Angelakopoulos <ioagel@gmail.com>
 
 #install deluge
@@ -7,11 +7,16 @@ RUN add-apt-repository ppa:deluge-team/ppa && \
     apt-get install -qy deluged deluge-web && \
     apt-get clean
 
-ADD playbook.yml /srv
-ADD start.sh /srv
-WORKDIR /srv
+# ADD playbook.yml /srv
+#ADD start.sh /srv
+ADD start.sh /usr/local/bin
 
-RUN ansible-playbook playbook.yml
+#set timezone
+RUN ln -sf /usr/share/zoneinfo/Europe/Athens /etc/localtime
+RUN chmod +x /usr/local/bin/start.sh
+#WORKDIR /srv
+RUN useradd -m -d /var/lib/deluge -s /bin/bash -u 10000 -g 10000 media
+# RUN ansible-playbook playbook.yml
 
 VOLUME /var/lib/deluge
 
@@ -23,4 +28,4 @@ EXPOSE 8112
 
 USER media
 
-CMD ["/start.sh"]
+ENTRYPOINT ["start.sh"]
