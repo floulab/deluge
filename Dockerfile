@@ -2,7 +2,8 @@ FROM ubuntu:latest
 MAINTAINER Ioannis Angelakopoulos <ioagel@gmail.com>
 
 #install deluge
-RUN add-apt-repository ppa:deluge-team/ppa && \
+RUN apt-get install -y software-properties-common && \
+    add-apt-repository ppa:deluge-team/ppa && \
     apt-get update -q && \
     apt-get install -qy deluged deluge-web && \
     apt-get clean
