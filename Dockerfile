@@ -19,6 +19,7 @@ ADD start.sh /usr/local/bin
 RUN ln -sf /usr/share/zoneinfo/Europe/Athens /etc/localtime
 RUN chmod +x /usr/local/bin/start.sh
 #WORKDIR /srv
+RUN groupadd -g 10000 media
 RUN useradd -m -d /var/lib/deluge -s /bin/bash -u 10000 -g 10000 media
 # RUN ansible-playbook playbook.yml
 
