@@ -1,6 +1,9 @@
 FROM ubuntu:latest
 MAINTAINER Ioannis Angelakopoulos <ioagel@gmail.com>
 
+#Upgrade system
+RUN apt-get update && apt-get upgrade -y && apt-get clean
+
 #install deluge
 RUN apt-get install -y software-properties-common && \
     add-apt-repository ppa:deluge-team/ppa && \
