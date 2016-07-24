@@ -7,7 +7,8 @@ RUN add-apt-repository ppa:deluge-team/ppa && \
     apt-get install -qy deluged deluge-web && \
     apt-get clean
 
-ADD files /srv
+ADD playbook.yml /srv
+ADD start.sh /srv
 WORKDIR /srv
 
 RUN ansible-playbook playbook.yml
