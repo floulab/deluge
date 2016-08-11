@@ -5,10 +5,7 @@ MAINTAINER Ioannis Angelakopoulos <ioagel@gmail.com>
 RUN apt-get update && apt-get upgrade -y && apt-get clean
 
 #install deluge
-RUN apt-get install -y software-properties-common && \
-    add-apt-repository ppa:deluge-team/ppa && \
-    apt-get update -q && \
-    apt-get install -qy deluged deluge-web supervisor && \
+RUN apt-get install -qy deluged deluge-web supervisor && \
     apt-get clean
 
 RUN mkdir -p /var/log/supervisor
